@@ -10,6 +10,11 @@ async function bootstrap() {
     .setDescription('REST API for notes')
     .setVersion(process.env.VERSION)
     .addTag('Notes')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+    })
     .build();
 
   const document = SwaggerModule.createDocument(app, options);

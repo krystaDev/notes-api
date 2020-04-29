@@ -18,7 +18,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google')
       clientSecret: configService.get(ConfigurationEnum.googleSecret),
       callbackURL : configService.get(ConfigurationEnum.googleCallbackUrl),
       passReqToCallback: true,
-      scope: ['profile']
+      scope: ['profile', 'email']
     })
   }
 
@@ -27,12 +27,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google')
   {
     try
     {
-      console.log(profile);
+      const email = profile.emails.find(e => e.verified === true).value;
+      const firstName = profile.name.givenName;
+      const lastName = profile.name.familyName;
 
-      const jwt: string = await this.authService.validateOAuthLogin(profile.id, Provider.GOOGLE);
+      const payload: string = await this.authService.validateOAuthLogin(email, Provider.GOOGLE, firstName, lastName);
       const user =
         {
-          jwt
+          jwt: payload
         }
 
       done(null, user);

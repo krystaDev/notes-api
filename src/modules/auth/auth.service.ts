@@ -20,7 +20,7 @@ export class AuthService {
 
   };
 
-  async validateOAuthLogin(thirdPartyId: string, provider: Provider): Promise<string>
+  async validateOAuthLogin(thirdPartyId: string, provider: Provider, firstName: string, lastName: string): Promise<string>
   {
     try
     {
@@ -29,7 +29,7 @@ export class AuthService {
       let user: ThirdPartUserInterface = await this.userService.findOneByThirdPartyId(thirdPartyId, provider);
 
       if (!user)
-      user = await this.userService.registerOAuthUser(thirdPartyId, provider);
+      user = await this.userService.registerOAuthUser(thirdPartyId, provider, firstName, lastName);
 
       const payload = {
         ...user

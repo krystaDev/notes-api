@@ -18,10 +18,12 @@ export class UserService {
     });
   }
 
-  public async registerOAuthUser(thirdPartyId: string, provider: Provider) {
+  public async registerOAuthUser(thirdPartyId: string, provider: Provider, firstName: string, lastName: string) {
     const user = this.userRepository.create({
       provider,
-      email: thirdPartyId
+      email: thirdPartyId,
+      firstName,
+      lastName
     });
 
     return this.userRepository.save(user);

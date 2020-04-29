@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards, Res, Req } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Notes')
 @Controller('auth')
@@ -26,6 +26,7 @@ export class AuthController {
   }
 
   @Get('protected')
+  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
   protectedResource()
   {
