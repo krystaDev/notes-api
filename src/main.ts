@@ -5,11 +5,11 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-
   const options = new DocumentBuilder()
     .setTitle('Notes API')
     .setDescription('REST API for notes')
     .setVersion(process.env.VERSION)
+    .addTag('Notes')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
