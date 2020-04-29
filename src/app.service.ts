@@ -4,8 +4,8 @@ import { ConfigurationEnum } from './core/config/configuration.enum';
 
 @Injectable()
 export class AppService {
-  constructor(private configService: ConfigService) {
-  }
+  constructor(private configService: ConfigService) {}
+
   version(): string {
     return this.configService.get(ConfigurationEnum.appVersion)
   }

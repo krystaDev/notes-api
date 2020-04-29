@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Provider } from '../auth/auth.service';
-import { ThirdPartUserInterface } from './dto/third-part-user.interface';
+import { IUserResponseDto } from './dto/i-user-response.dto';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Provider } from '../auth/provider.enum';
 
 @Injectable()
 export class UserService {
@@ -11,7 +11,7 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>) {
   }
-  public async findOneByThirdPartyId(thirdPartyId: string, provider: Provider): Promise<ThirdPartUserInterface> {
+  public async findOneByThirdPartyId(thirdPartyId: string, provider: Provider): Promise<IUserResponseDto> {
     return await this.userRepository.findOne({
       email: thirdPartyId,
       provider: provider
@@ -27,5 +27,9 @@ export class UserService {
     });
 
     return this.userRepository.save(user);
+  }
+
+  public async getUserById(id: number) {
+    return await this.userRepository.findOne({ id: id })
   }
 }

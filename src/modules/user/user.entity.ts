@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { Provider } from '../auth/auth.service';
+import { Provider } from '../auth/provider.enum';
 
 @Entity()
 export class User {

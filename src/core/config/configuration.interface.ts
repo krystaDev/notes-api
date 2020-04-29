@@ -8,6 +8,7 @@ export interface IConfiguration {
     port: number;
   },
   jwtSecret: string,
+  jwtValidTime: number,
   google: {
     clientId: string;
     secret: string;

@@ -8,5 +8,6 @@ export enum ConfigurationEnum {
   googleClientId = 'google.clientId',
   googleSecret = 'google.secret',
   googleCallbackUrl = 'google.callbackUrl',
-  jwtSecret = 'jwtSecret'
+  jwtSecret = 'jwtSecret',
+  jwtValidTime = 'jwtValidTime'
 }

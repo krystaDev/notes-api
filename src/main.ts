@@ -9,7 +9,6 @@ async function bootstrap() {
     .setTitle('Notes API')
     .setDescription('REST API for notes')
     .setVersion(process.env.VERSION)
-    .addTag('Notes')
     .addBearerAuth({
       type: 'http',
       scheme: 'bearer',

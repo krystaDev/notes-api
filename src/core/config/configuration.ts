@@ -11,6 +11,7 @@ export default () => ({
     port: parseInt(process.env.TYPEORM_PORT, 10) || 3306
   },
   jwtSecret: process.env.JWT_SECRET_TOKEN,
+  jwtValidTime: parseInt(process.env.JWT_VALID_TIME, 10) || 3600,
   google: {
     clientId: process.env.GOOGLE_CLIENT_ID,
     secret: process.env.GOOGLE_SECRET,

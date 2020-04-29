@@ -3,7 +3,8 @@ import { PassportStrategy } from "@nestjs/passport";
 import { Strategy } from "passport-google-oauth20";
 import { ConfigService } from '@nestjs/config';
 import { ConfigurationEnum } from '../../../core/config/configuration.enum';
-import { AuthService, Provider } from '../auth.service';
+import { AuthService } from '../auth.service';
+import { Provider } from "../provider.enum";
 
 
 @Injectable()
