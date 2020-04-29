@@ -29,7 +29,7 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  public async getUserById(id: number) {
+  public async getUserById(id: string) {
     return await this.userRepository.findOne({ id: id })
   }
 }

@@ -11,10 +11,14 @@ export class User extends DbBaseEntity{
   lastName: string;
 
   @Column()
-  email: string
+  email: string;
 
-  @Column({nullable: true, enum: Provider})
-  provider: Provider
+  @Column({
+    type: "enum",
+    enum: Provider,
+    default: Provider.GOOGLE
+  })
+  provider: Provider;
 
   @Column({ default: true })
   isActive: boolean;
