@@ -1,6 +1,6 @@
 import { Controller, Get, UseGuards, Res, Req } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -10,7 +10,7 @@ export class AuthController {
   @UseGuards(AuthGuard('google'))
   googleLogin()
   {
-    // initiates the Google OAuth2 login flow
+    // google login logic behind
   }
 
   @Get('google/callback')

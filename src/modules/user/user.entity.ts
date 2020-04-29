@@ -1,11 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column } from 'typeorm';
 import { Provider } from '../auth/provider.enum';
+import { DbBaseEntity } from '../../core/database/db-base.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class User extends DbBaseEntity{
   @Column({nullable: true})
   firstName: string;
 

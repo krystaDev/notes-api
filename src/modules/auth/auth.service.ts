@@ -3,7 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import { ConfigurationEnum } from '../../core/config/configuration.enum';
 import { UserService } from '../user/user.service';
-import { IUserResponseDto } from '../user/dto/i-user-response.dto';
+import { IUserResponseDto } from '../user/dto/user-response.dto';
 import { Provider } from './provider.enum';
 
 @Injectable()
