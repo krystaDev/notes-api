@@ -1,21 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { UserService } from './user.service';
-import { TypeOrmTestModule } from '@devniel/nestjs-typeorm-testing';
-import { User } from './user.entity';
+import { repositoriesUsedForTest, UserService } from './user.service';
 import { ConfigModule } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { createTestConfiguration } from '../../core/database/test-db-setup';
+import { getTestingProviders } from '../../core/database/test-db-setup';
+import { NoteBookService } from '../note-book/note-book.service';
 
 describe('UserService', () => {
   let service: UserService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      imports: [ ConfigModule,
-        TypeOrmModule.forRoot(createTestConfiguration([User])),
-        TypeOrmModule.forFeature([User])],
-
-      providers: [UserService],
+      imports: [ConfigModule],
+      providers: [UserService, NoteBookService, ...getTestingProviders(repositoriesUsedForTest)]
     }).compile();
 
     service = module.get<UserService>(UserService);

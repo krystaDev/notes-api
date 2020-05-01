@@ -1,15 +1,11 @@
-import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { EntitySchema } from 'typeorm';
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Provider } from '@nestjs/common';
 
-type Entity = Function | string | EntitySchema<any>;
+type Entity = Function;
 
-export const createTestConfiguration = (
-  entities: Entity[],
-): TypeOrmModuleOptions => ({
-  type: 'sqlite',
-  database: ':memory:',
-  entities,
-  dropSchema: true,
-  synchronize: true,
-  logging: false,
-});
+export const getTestingProviders = (entities: Entity[]): Provider[] =>
+  entities.map((entitie: Entity) => ({
+    provide: getRepositoryToken(entitie),
+    useClass: Repository
+  }));

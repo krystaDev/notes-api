@@ -6,14 +6,12 @@ import { UserService } from './user.service';
 @Controller('user')
 @ApiTags('User')
 export class UserController {
-
-  constructor(private readonly userService: UserService) {
-  }
+  constructor(private readonly userService: UserService) {}
 
   @Get()
   @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
-  getUser(@Request() req) {
-    return this.userService.getUserById(req.user.id);
+  async getUser(@Request() req) {
+    return await this.userService.getUserById(req.user.id);
   }
 }
