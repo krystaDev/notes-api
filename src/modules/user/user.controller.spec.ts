@@ -4,6 +4,8 @@ import { ConfigModule } from '@nestjs/config';
 import { UserService } from './user.service';
 import { User } from './user.entity';
 import { TypeOrmTestModule } from '@devniel/nestjs-typeorm-testing/dist';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { createTestConfiguration } from '../../core/database/test-db-setup';
 
 describe('User Controller', () => {
   let controller: UserController;
@@ -11,7 +13,10 @@ describe('User Controller', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [UserService],
-      imports: [ConfigModule, TypeOrmTestModule.forTest([User])],
+      imports: [
+        ConfigModule,
+        TypeOrmModule.forRoot(createTestConfiguration([User])),
+        TypeOrmModule.forFeature([User])],
       controllers: [UserController],
     }).compile();
 

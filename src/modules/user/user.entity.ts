@@ -14,7 +14,7 @@ export class User extends DbBaseEntity{
   email: string;
 
   @Column({
-    type: "enum",
+    type: "simple-enum",
     enum: Provider,
     default: Provider.GOOGLE
   })
